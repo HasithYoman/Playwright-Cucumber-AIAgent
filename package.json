@@ -1,0 +1,27 @@
+{
+  "name": "playwright-cucumber-aiagent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:debug": "playwright test --debug",
+  "clean": "taskkill /F /IM node.exe || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HasithYoman/Playwright-Cucumber-AIAgent.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HasithYoman/Playwright-Cucumber-AIAgent/issues"
+  },
+  "homepage": "https://github.com/HasithYoman/Playwright-Cucumber-AIAgent#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.2.0"
+  }
+
+}
