@@ -81,31 +81,36 @@ test.only('UI Controls', async ({ page }) =>
 });
 
 
-// test.only('Login page contex test', async({page})=>
-// {
-//     await page.goto(
-//   "https://rahulshettyacademy.com/client/#/auth/login",
-//   { waitUntil: 'domcontentloaded' }
-// );
 
-//     // const context = await browser.newContext();
-//     // const page=await context.newPage();
+test.only('child window handling', async ({ browser }) =>
+{
 
-//     const Email=page.locator("//input[@id='userEmail']");
-//     const password=page.locator("//input[@id='userPassword']");
-//     const Login=page.locator("//input[@id='login']");
+    //comtext for origibal page
+    const context = await browser.newContext();
+    const page=await context.newPage();
+    const userName = page.locator('#username');
+    await page.goto(
+      "https://rahulshettyacademy.com/loginpagePractise/",
+      { waitUntil: 'domcontentloaded' }
+    );
 
-//     await page.goto(
-//   "https://rahulshettyacademy.com/client/#/auth/login",
-//   { waitUntil: 'domcontentloaded' }
-// );
+    const documentLink=page.locator("//a[@class='blinkingText']");
+    const [newPage]=await Promise.all(
+    [context.waitForEvent('page'),// listens for child window
+    documentLink.click(),])// triggers child window
 
-//     await Email.fill("hasithyoman2@gmail.com");
-//     await password.fill("It19202464@");
-//     await Login.click();
+    await newPage.waitForLoadState(); // optional, ensures page fully loaded
 
+    const text =await newPage.locator(".red").textContent();
+    const arrayText=text.split("@");
+    const domain=arrayText[1].split(" ")[0]
+    console.log(domain);
+    //use page because of orginal main page
+    page.locator("#username").type(domain);
+    await page.pause();
+    console.log(await page.locator("#username").type(domain));
 
+    
 
-// });
-
+});
 
