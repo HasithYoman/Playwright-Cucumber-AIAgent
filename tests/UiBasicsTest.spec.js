@@ -61,12 +61,23 @@ test.only('UI Controls', async ({ page }) =>
     const userName = page.locator('#username');
     const password = page.locator("[type='password']");
     const clickOK = page.locator("#okayBtn");
+    const checkBox= page.locator("//input[@id='terms']")
+    const documentLink=page.locator("//a[@class='blinkingText']");
     const userTypeDropDown = page.locator("//select[@class='form-control']");
 
     await userTypeDropDown.selectOption("consult");
     await page.locator("//span[@class='radiotextsty']").last().click();
     await clickOK.click();
-    expect(page.locator("//span[@class='radiotextsty']").last()).toBeChecked();
+    console.log(await page.locator("//span[@class='radiotextsty']").last().isChecked());
+    await expect(page.locator("//span[@class='radiotextsty']").last()).toBeChecked();
+    await checkBox.click();
+    //check whther checkbox is checked or not
+    await expect(checkBox).toBeChecked();
+    await checkBox.uncheck();
+    //Verify that the checkbox is NOT checked
+    expect(await checkBox.isChecked()).toBeFalsy();
+    await expect(documentLink).toHaveAttribute("class","blinkingText");
+    
 });
 
 
