@@ -1,12 +1,12 @@
 const {test, expect} = require('@playwright/test')
 
 
-test.only('Browser Context-Validating error login', async({page})=>
+test('Browser Context-Validating error login', async({page})=>
 {
-    await page.goto(
-  "https://rahulshettyacademy.com/client/#/auth/login",
-  { waitUntil: 'domcontentloaded' }
-);
+//     await page.goto(
+//   "https://rahulshettyacademy.com/client/#/auth/login",
+//   { waitUntil: 'domcontentloaded' }
+// );
 
     // const context = await browser.newContext();
     // const page=await context.newPage();

@@ -39,6 +39,37 @@ test('Browser context playwright test', async ({browser})=>
     console.log(allTitles);
 });
 
+
+
+test('Google tile test', async ({page})=>
+//async and await is a combination
+{
+    
+
+    await page.goto("https://google.com");
+    console.log (await page.title());
+    await expect(page).toHaveTitle('Google');
+});
+
+test.only('UI Controls', async ({ page }) =>
+{
+    await page.goto(
+      "https://rahulshettyacademy.com/loginpagePractise/",
+      { waitUntil: 'domcontentloaded' }
+    );
+
+    const userName = page.locator('#username');
+    const password = page.locator("[type='password']");
+    const clickOK = page.locator("#okayBtn");
+    const userTypeDropDown = page.locator("//select[@class='form-control']");
+
+    await userTypeDropDown.selectOption("consult");
+    await page.locator("//span[@class='radiotextsty']").last().click();
+    await clickOK.click();
+    expect(page.locator("//span[@class='radiotextsty']").last()).toBeChecked();
+});
+
+
 // test.only('Login page contex test', async({page})=>
 // {
 //     await page.goto(
@@ -65,13 +96,5 @@ test('Browser context playwright test', async ({browser})=>
 
 
 // });
-
-test('Google tile test', async ({page})=>
-//async and await is a combination
-{
-    await page.goto("https://google.com");
-    console.log (await page.title());
-    await expect(page).toHaveTitle('Google');
-});
 
 
