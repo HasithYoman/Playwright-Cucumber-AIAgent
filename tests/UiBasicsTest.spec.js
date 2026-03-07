@@ -51,7 +51,7 @@ test('Google tile test', async ({page})=>
     await expect(page).toHaveTitle('Google');
 });
 
-test.only('UI Controls', async ({ page }) =>
+test('UI Controls', async ({ page }) =>
 {
     await page.goto(
       "https://rahulshettyacademy.com/loginpagePractise/",
@@ -82,7 +82,7 @@ test.only('UI Controls', async ({ page }) =>
 
 
 
-test.only('child window handling', async ({ browser }) =>
+test('child window handling', async ({ browser }) =>
 {
 
     //comtext for origibal page
@@ -105,10 +105,11 @@ test.only('child window handling', async ({ browser }) =>
     const arrayText=text.split("@");
     const domain=arrayText[1].split(" ")[0]
     console.log(domain);
-    //use page because of orginal main page
-    page.locator("#username").type(domain);
+    //use page because of orginal main pages
+    page.locator("#username").fill(domain);
     await page.pause();
-    console.log(await page.locator("#username").type(domain));
+    //console.log(await page.locator("#username").fill(domain));
+    console.log(await page.locator("#username").inputValue());
 
     
 
