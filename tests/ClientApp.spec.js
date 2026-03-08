@@ -51,6 +51,24 @@ test.only('Browser Context-Validating error login', async({page})=>
 
     const bool=await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
     expect(bool).toBeTruthy();
+    await page.locator("text=Checkout").click();
+    //pressSequentially help to type omne by one
+    await page.locator("//input[@placeholder='Select Country']").pressSequentially('ind');
+    const dropDown =page.locator(".ta-results");
+    await dropDown.waitFor();
+    const optionsCount=await dropDown.locator("button").count();
+    for(let i=0;i<optionsCount;i++)
+    {
+      const text=await dropDown.locator("button").nth(i).textContent();
+      if(text.trim() === 'India')
+      {
+        await dropDown.locator("button").nth(i).click();
+        break;
+      }
+    }
+    await page.pause();
+
+    
 
 
 
